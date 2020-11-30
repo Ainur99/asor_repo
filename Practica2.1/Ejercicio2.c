@@ -8,6 +8,7 @@ int main() {
       err = errno;
       printf("%i\n", err);
       printf("%s\n", strerror(err));
+      return 1;
    }
    return 1;
 }
