@@ -12,5 +12,6 @@ int main() {
    printf("%s\n", buf.release);
    printf("%s\n", buf.version);
    printf("%s\n", buf.machine);
+   printf("%s\n", buf.domainname);
    return 1;
 }
