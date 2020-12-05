@@ -13,4 +13,5 @@ int main() {
    printf("nombre de usuario: %s\n", pass->pw_name);
    printf("directorio home: %s\n", pass->pw_dir);
    printf("descripcion de usuario: %s\n", pass->pw_gecos);
+   return 1;
 }

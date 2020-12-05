@@ -5,4 +5,5 @@
 int main() {
    printf("uid = %i\n", getuid());
    printf("euid = %i\n", geteuid());
+   return 1;
 }
