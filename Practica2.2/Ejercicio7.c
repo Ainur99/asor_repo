@@ -1,3 +1,4 @@
+//Para evitar problemas despues de crear el archivo se restauran los permisos por defecto
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
