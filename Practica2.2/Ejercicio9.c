@@ -42,4 +42,5 @@ int main(int argc, char** argv) {
    printf("I-node: %i\n", st.st_ino);
    printf("Tipo: %s\n", mode);
    printf("Ultimo acceso: %i\n", st.st_atim);
+   return 0;
 }
