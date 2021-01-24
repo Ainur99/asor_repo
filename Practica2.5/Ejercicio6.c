@@ -3,21 +3,13 @@
 #include <netdb.h>
 #include <sys/types.h>
 #include <string.h>
-#include <time.h>
 
 int main(int argc, char** argv) {
 
 	struct addrinfo hints, *res;
 	int clisd, sd, c;
-	socklen_t addrlen = 64;	
+	socklen_t addrlen = 256;	
 	char buf[16], addr[addrlen], host[NI_MAXHOST], serv[NI_MAXSERV];
-	
-	int i;	
-
-	int tlen;
-	char str[64];
-	time_t tim;
-   	struct tm *t;
 
 	memset(&hints, 0, sizeof(struct addrinfo));
 	hints.ai_flags = AI_PASSIVE;
@@ -57,8 +49,8 @@ int main(int argc, char** argv) {
 			printf("Error en getnameinfo()\n");
 			return 0;
 		}
-		printf("Conexion desde %s %i\n", addr, serv);
-		while (c = recv(sd, buf, 16, 0)) {
+		printf("Conexion desde %s %s\n", host, serv);
+		while (c = recv(clisd, buf, 16, 0)) {
 			buf[c] = '\0';
 			send(clisd, buf, c, 0);
 		}
