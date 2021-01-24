@@ -54,24 +54,25 @@ int main(int argc, char** argv) {
 		time(&tim);
    		t = localtime(&tim);
 
-		if(strcmp(buf,"t\n") == 0) {
-			tlen = strftime(str, 64, "%H:%M", t);
-			sendto(sd, str, tlen, 0, (struct sockaddr *) &addr, addrlen);
-		}
-		else if(strcmp(buf,"d\n") == 0) {
-			tlen = strftime(str, 64, "%d de %B de %Y", t);
-			sendto(sd, str, tlen, 0, (struct sockaddr *) &addr, addrlen);
-		}
-		else if(strcmp(buf,"q\n") == 0) {
-			close(sd);
-			printf("Servidor cerrado\n");
-			return 0;
-		}
-		else {
-			printf("Comando no reconocido: %s", buf);
+		switch (buf[0]) {
+			case 't':
+				tlen = strftime(str, 64, "%H:%M", t);
+				sendto(sd, str, tlen, 0, (struct sockaddr *) &addr, addrlen);
+				break;
+			case 'd':
+				tlen = strftime(str, 64, "%d de %B de %Y", t);
+				sendto(sd, str, tlen, 0, (struct sockaddr *) &addr, addrlen);
+				break;
+			case 'q':
+				freeaddrinfo(res);
+				close(sd);
+				printf("Servidor cerrado\n");
+				return 0;
+			default:
+				printf("Comando no reconocido: %s\n", buf);
 		}
 	}
-
+	freeaddrinfo(res);
 	close(sd);
 	return 0;
 }
